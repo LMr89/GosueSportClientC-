@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapaModelo
+namespace CapaModelo.Response
 {
-    public class Class1
+     public class TimeResponse
     {
+        int RentedTime { get; set; }
+
+
+
     }
 }
