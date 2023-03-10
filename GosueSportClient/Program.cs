@@ -4,19 +4,26 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace GosueSportClient
 {
     static class Program
     {
-        /// <summary>
-        /// Punto de entrada principal para la aplicación.
-        /// </summary>
+       
+
+        
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TimeCounterForm());
+
+            BlockScreen ObjBlockForm = new BlockScreen();
+            TimeCounterForm ObjTimeForm = new TimeCounterForm();
+            FormController ObjFormController = new FormController(ObjBlockForm, ObjTimeForm);
+            
+            
+            Application.Run(ObjBlockForm);
         }
     }
 }

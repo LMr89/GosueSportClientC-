@@ -8,10 +8,9 @@ namespace CapaModelo.Request
 {
    public  class WebSocketRequest
     {
-        int IdMachine { get; set; }
-        string MacAddress { get; set; }
-
-        string IpMachine { get; set; }
+        public int IdMachine { get; set; }
+        public string MacAddress { get; set; }
+        public string IpMachine { get; set; }
 
 
     }

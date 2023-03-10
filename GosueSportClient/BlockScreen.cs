@@ -28,7 +28,7 @@ namespace GosueSportClient
             Image ImgResized = resizeImage(Properties.Resources.GosueBlockScreen, ScreenDimension.Size);
 
             BlockPictureBox.Image = ImgResized;
-
+           
 
             
         }
