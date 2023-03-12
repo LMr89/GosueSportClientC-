@@ -19,10 +19,13 @@ namespace GosueSportClient
             InitializeComponent();
 
             BackColor = Color.Black;
+           
+             
             Width = ScreenDimension.Width;
             Height = ScreenDimension.Height;
             BlockPictureBox.Width = ScreenDimension.Width;
             BlockPictureBox.Height = ScreenDimension.Height;
+             
 
 
             Image ImgResized = resizeImage(Properties.Resources.GosueBlockScreen, ScreenDimension.Size);
@@ -37,6 +40,15 @@ namespace GosueSportClient
         {
             return new Bitmap(ImgToResize, Size);
         }
-        
+
+        private void BlockScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+           
+        }
+
+        private void BlockScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+        }
     }
 }

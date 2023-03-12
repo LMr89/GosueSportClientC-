@@ -34,14 +34,15 @@ namespace GosueSportClient
             this.PcbMinimize = new System.Windows.Forms.PictureBox();
             this.PcbIcon = new System.Windows.Forms.PictureBox();
             this.GbTiempo = new System.Windows.Forms.GroupBox();
-            this.TxtTitAlquilado = new System.Windows.Forms.Label();
-            this.TxtTiempoAlquilado = new System.Windows.Forms.Label();
+            this.TxtNegocio = new System.Windows.Forms.Label();
             this.TxtTiempoRestante = new System.Windows.Forms.Label();
             this.TxtTitRestante = new System.Windows.Forms.Label();
-            this.TxtNegocio = new System.Windows.Forms.Label();
+            this.TxtTiempoAlquilado = new System.Windows.Forms.Label();
+            this.TxtTitAlquilado = new System.Windows.Forms.Label();
             this.NtfIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.CmsOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mostrarProgramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TimeContador = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PcbMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PcbIcon)).BeginInit();
             this.GbTiempo.SuspendLayout();
@@ -84,26 +85,18 @@ namespace GosueSportClient
             this.GbTiempo.TabStop = false;
             this.GbTiempo.Text = "Tiempo";
             // 
-            // TxtTitAlquilado
+            // TxtNegocio
             // 
-            this.TxtTitAlquilado.AutoSize = true;
-            this.TxtTitAlquilado.Location = new System.Drawing.Point(18, 25);
-            this.TxtTitAlquilado.Name = "TxtTitAlquilado";
-            this.TxtTitAlquilado.Size = new System.Drawing.Size(91, 13);
-            this.TxtTitAlquilado.TabIndex = 0;
-            this.TxtTitAlquilado.Text = "Tiempo Alquilado:";
-            // 
-            // TxtTiempoAlquilado
-            // 
-            this.TxtTiempoAlquilado.Location = new System.Drawing.Point(116, 25);
-            this.TxtTiempoAlquilado.Name = "TxtTiempoAlquilado";
-            this.TxtTiempoAlquilado.Size = new System.Drawing.Size(108, 20);
-            this.TxtTiempoAlquilado.TabIndex = 1;
-            this.TxtTiempoAlquilado.Text = "-----------------";
+            this.TxtNegocio.AutoSize = true;
+            this.TxtNegocio.Location = new System.Drawing.Point(80, 86);
+            this.TxtNegocio.Name = "TxtNegocio";
+            this.TxtNegocio.Size = new System.Drawing.Size(129, 13);
+            this.TxtNegocio.TabIndex = 4;
+            this.TxtNegocio.Text = "GOSUESPORTS ARENA";
             // 
             // TxtTiempoRestante
             // 
-            this.TxtTiempoRestante.Location = new System.Drawing.Point(100, 54);
+            this.TxtTiempoRestante.Location = new System.Drawing.Point(114, 54);
             this.TxtTiempoRestante.Name = "TxtTiempoRestante";
             this.TxtTiempoRestante.Size = new System.Drawing.Size(137, 20);
             this.TxtTiempoRestante.TabIndex = 3;
@@ -118,14 +111,22 @@ namespace GosueSportClient
             this.TxtTitRestante.TabIndex = 2;
             this.TxtTitRestante.Text = "Tiempo Restante:";
             // 
-            // TxtNegocio
+            // TxtTiempoAlquilado
             // 
-            this.TxtNegocio.AutoSize = true;
-            this.TxtNegocio.Location = new System.Drawing.Point(80, 86);
-            this.TxtNegocio.Name = "TxtNegocio";
-            this.TxtNegocio.Size = new System.Drawing.Size(129, 13);
-            this.TxtNegocio.TabIndex = 4;
-            this.TxtNegocio.Text = "GOSUESPORTS ARENA";
+            this.TxtTiempoAlquilado.Location = new System.Drawing.Point(116, 25);
+            this.TxtTiempoAlquilado.Name = "TxtTiempoAlquilado";
+            this.TxtTiempoAlquilado.Size = new System.Drawing.Size(108, 20);
+            this.TxtTiempoAlquilado.TabIndex = 1;
+            this.TxtTiempoAlquilado.Text = "-----------------";
+            // 
+            // TxtTitAlquilado
+            // 
+            this.TxtTitAlquilado.AutoSize = true;
+            this.TxtTitAlquilado.Location = new System.Drawing.Point(18, 25);
+            this.TxtTitAlquilado.Name = "TxtTitAlquilado";
+            this.TxtTitAlquilado.Size = new System.Drawing.Size(91, 13);
+            this.TxtTitAlquilado.TabIndex = 0;
+            this.TxtTitAlquilado.Text = "Tiempo Alquilado:";
             // 
             // NtfIcon
             // 
@@ -151,6 +152,11 @@ namespace GosueSportClient
             this.mostrarProgramaToolStripMenuItem.Text = "Mostrar Programa";
             this.mostrarProgramaToolStripMenuItem.Click += new System.EventHandler(this.mostrarProgramaToolStripMenuItem_Click);
             // 
+            // TimeContador
+            // 
+            this.TimeContador.Interval = 1000;
+            this.TimeContador.Tick += new System.EventHandler(this.TimeContador_Tick);
+            // 
             // TimeCounterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,6 +173,9 @@ namespace GosueSportClient
             this.ShowInTaskbar = false;
             this.Text = "TimeCounterForm";
             this.TopMost = true;
+            this.Activated += new System.EventHandler(this.TimeCounterForm_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TimeCounterForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TimeCounterForm_FormClosed);
             this.Load += new System.EventHandler(this.TimeCounterForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PcbMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PcbIcon)).EndInit();
@@ -190,5 +199,6 @@ namespace GosueSportClient
         private System.Windows.Forms.NotifyIcon NtfIcon;
         private System.Windows.Forms.ContextMenuStrip CmsOptions;
         private System.Windows.Forms.ToolStripMenuItem mostrarProgramaToolStripMenuItem;
+        private System.Windows.Forms.Timer TimeContador;
     }
 }

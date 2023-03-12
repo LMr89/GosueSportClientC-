@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapaModelo.Response
+namespace GosueSportClient
 {
-     public class TimeResponse
+    public interface OnNotificateCounterEnd
     {
-        int RentedTime { get; set; }
-
-
-
+        void OnNotifiedCounterCompleted();
     }
 }

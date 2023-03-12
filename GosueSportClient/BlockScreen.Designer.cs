@@ -64,6 +64,8 @@ namespace GosueSportClient
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BlockScreen_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BlockScreen_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.BlockPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

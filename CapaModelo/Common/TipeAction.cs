@@ -8,7 +8,9 @@ namespace CapaModelo.Response
 {
     public enum TipeAction
     {
-        UNLOCK_MACHINE = 1
+        LOCK_MACHINE = 0,
+        RUN_TIME  = 1
+
 
     }
 }

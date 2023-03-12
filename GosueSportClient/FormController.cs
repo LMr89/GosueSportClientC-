@@ -1,21 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using CapaLogica;
+using CapaModelo.Response;
+using Newtonsoft.Json;
 using WebSocketSharp;
 
 namespace GosueSportClient
 {
-    public class FormController
+    public class FormController : OnNotificateCounterEnd
     {
         //Obj Clases formularios 
         BlockScreen blockScreenLanForm;
         TimeCounterForm TimeCounterLanForm;
          WebSocketServiceIntializer WebSockInit;
+        ActionResponse Response;
         bool IsConnected;
+        bool IsBlockFormShown;
+        bool IsCounterTimeShow;
 
 
         public FormController(BlockScreen blockScreen, TimeCounterForm timeCounterForm)
@@ -25,8 +31,18 @@ namespace GosueSportClient
             WebSockInit = new WebSocketServiceIntializer();
             InitConnectionWithServer();
             IsConnected = false;
+
+            
+            IsBlockFormShown = true;
+            IsCounterTimeShow = false;
+            TimeCounterLanForm.Notificator = this;
+
+
+            blockScreen.Show();
         }
 
+
+        
 
         void InitConnectionWithServer()
         {
@@ -63,16 +79,67 @@ namespace GosueSportClient
 
         private void FormControllOnMessageHandler(object sender, MessageEventArgs e)
         {
-            MessageBox.Show(e.Data);
+            Response = null;
+            Response = JsonConvert.DeserializeObject<ActionResponse>(e.Data);
+            Console.WriteLine(e.Data);
+            StartFormFromAction(Response);
            
             
         }
 
-        private void OnMessageWebSocketHandler(object sender, MessageEventArgs message)
+
+
+        void StartFormFromAction(ActionResponse Resp)
         {
-            throw new NotImplementedException();
+            if (Resp.tipeAction ==  ((int)TipeAction.LOCK_MACHINE) && IsCounterTimeShow)
+            {
+                ThreadSafe(() =>
+                {
+                    TimeCounterLanForm.Hide();
+                    blockScreenLanForm.Show();
+                    IsBlockFormShown = true;
+                }, TimeCounterLanForm);
+
+            }
+
+            if(Resp.tipeAction == ((int) TipeAction.RUN_TIME ) && IsBlockFormShown)
+            {
+                Console.WriteLine("Se iniciara el bloqueo formulario");
+                ThreadSafe(() =>
+               {
+                   blockScreenLanForm.Hide();
+
+                   TimeCounterLanForm.AllMinutos = Resp.rentedTime;
+                   TimeCounterLanForm.Show();
+                   IsBlockFormShown = false;
+               }, blockScreenLanForm);
+
+                
+            }
+        }
+        public void ThreadSafe(Action callback, Form form)
+        {
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.RunWorkerCompleted += (obj, e) =>
+            {
+                if (form.InvokeRequired)
+                    form.Invoke(callback);
+                else
+                    callback();
+            };
+            worker.RunWorkerAsync();
         }
 
-        
+        public void OnNotifiedCounterCompleted()
+        {
+            ThreadSafe(() =>
+            {
+                Thread.Sleep(2000);
+                TimeCounterLanForm.Hide();
+                blockScreenLanForm.Show();
+                IsBlockFormShown = true;
+            }, blockScreenLanForm);
+
+        }
     }
 }

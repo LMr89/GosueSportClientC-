@@ -9,9 +9,11 @@ namespace CapaModelo.Response
     public  class ActionResponse
     {
 
-        string DateAction { get; set; }
-       
-        TipeAction TipeAction { get; set; }
+        public string dateAction { get; set; }
+
+        public  int tipeAction { get; set; }
+
+        public  int rentedTime { get; set; }
 
 
     }

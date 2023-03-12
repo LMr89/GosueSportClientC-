@@ -48,7 +48,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\WebSocketRequest.cs" />
     <Compile Include="Response\ActionResponse.cs" />
-    <Compile Include="Response\TimeResponse.cs" />
     <Compile Include="Common\TipeAction.cs" />
   </ItemGroup>
   <ItemGroup>

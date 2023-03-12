@@ -9,8 +9,8 @@ namespace CapaModelo.Common
     public class WebSocketConstants
     {
 
-        public static  readonly string WEB_SOCKET_URL = "ws://localhost:8089/api/v1/LanCenterSW/ws";
-        public static readonly string CLIENTE_ID_PARAM = "?clientId=";
+        public static  readonly string WEB_SOCKET_URL = "ws://192.168.56.1:8089/api/v1/LanCenterSW/ws";
+        public static readonly string CLIENTE_ID_PARAM = "?clientMac=";
 
     }
 }

@@ -58,7 +58,7 @@ namespace CapaLogica
         {
             return WebSocketConstants.WEB_SOCKET_URL +
                 WebSocketConstants.CLIENTE_ID_PARAM +
-                MachineDetails.GetIpAddressMachine();
+                MachineDetails.GetMacAddressMachine();
 
         }
         WebSocketRequest BuildRequest()
