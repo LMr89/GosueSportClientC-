@@ -15,12 +15,16 @@ namespace CapaLogica
     {
         MachineDetailsService MachineDetails;
         WebSocket LanCenterWebSocket;
+        AppSettingsManager settingsManager;
         string WebSocketUrl = "";
+        
 
         public WebSocketServiceIntializer()
         {
             Init();
-            
+            settingsManager = new AppSettingsManager();
+
+
         }
 
        void Init()
@@ -65,7 +69,7 @@ namespace CapaLogica
         {
             return new WebSocketRequest()
             {
-                IdMachine = 1,
+                IdMachine = Convert.ToInt32(settingsManager.GetIdMachineFromSettings()),
                 IpMachine = MachineDetails.GetIpAddressMachine(),
                 MacAddress = MachineDetails.GetMacAddressMachine()
             };
