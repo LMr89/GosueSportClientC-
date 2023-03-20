@@ -15,14 +15,14 @@ namespace CapaLogica
     {
         MachineDetailsService MachineDetails;
         WebSocket LanCenterWebSocket;
-        AppSettingsManager settingsManager;
-       public string WebSocketUrl { get; set; }
-        
+        public AppSettingsManager settingsManager;
+        string WebSocketUrl = "";
 
         public WebSocketServiceIntializer()
         {
             settingsManager = new AppSettingsManager();
             Init();
+            
         }
 
        void Init()
