@@ -10,12 +10,10 @@ namespace CapaLogica
     public class AppSettingsManager
     {
         private readonly string KEY_MACHINE_APP_SETTINGS = "idMachine";
-<<<<<<< HEAD
+
         private  readonly string HOST_SERVER_WEB_SOCKET = "hostWebSocket";
 
-=======
-        
->>>>>>> c43727964e747f043a8f74b635bb4754c83e7803
+
         public void SetIdMachine(int id)
         {
             ConfigurationManager.
@@ -28,7 +26,7 @@ namespace CapaLogica
             string id = ConfigurationManager.AppSettings[KEY_MACHINE_APP_SETTINGS];
             return id;
         }
-<<<<<<< HEAD
+
 
 
     
@@ -38,10 +36,6 @@ namespace CapaLogica
             
             return host;
         }
-=======
-        
->>>>>>> c43727964e747f043a8f74b635bb4754c83e7803
-
 
 
 
