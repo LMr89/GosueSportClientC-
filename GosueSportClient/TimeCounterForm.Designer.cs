@@ -88,7 +88,7 @@ namespace GosueSportClient
             // TxtNegocio
             // 
             this.TxtNegocio.AutoSize = true;
-            this.TxtNegocio.Location = new System.Drawing.Point(80, 86);
+            this.TxtNegocio.Location = new System.Drawing.Point(63, 86);
             this.TxtNegocio.Name = "TxtNegocio";
             this.TxtNegocio.Size = new System.Drawing.Size(129, 13);
             this.TxtNegocio.TabIndex = 4;

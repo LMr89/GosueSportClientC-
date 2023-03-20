@@ -69,6 +69,7 @@
     <Compile Include="TimeCounterForm.Designer.cs">
       <DependentUpon>TimeCounterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TimeCounterManager.cs" />
     <EmbeddedResource Include="BlockScreen.resx">
       <DependentUpon>BlockScreen.cs</DependentUpon>
     </EmbeddedResource>

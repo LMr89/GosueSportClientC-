@@ -67,7 +67,6 @@ namespace GosueSportClient
 
         private void FormController_OnClose(object sender, CloseEventArgs e)
         {
-
             while (!IsConnected) // Conexion cerrada
             {
                 Thread.Sleep(5000);
@@ -95,10 +94,12 @@ namespace GosueSportClient
             {
                 ThreadSafe(() =>
                 {
+                    TimeCounterLanForm.StopTimer();
                     TimeCounterLanForm.Hide();
                     blockScreenLanForm.Show();
                     IsBlockFormShown = true;
                 }, TimeCounterLanForm);
+                WebSockInit.SendTimeEndToServer();
 
             }
 
@@ -111,7 +112,7 @@ namespace GosueSportClient
 
                    TimeCounterLanForm.AllMinutos = Resp.rentedTime;
                    TimeCounterLanForm.Show();
-                   IsBlockFormShown = false;
+                   IsCounterTimeShow = true;
                }, blockScreenLanForm);
 
                 
@@ -139,6 +140,8 @@ namespace GosueSportClient
                 blockScreenLanForm.Show();
                 IsBlockFormShown = true;
             }, blockScreenLanForm);
+
+            WebSockInit.SendTimeEndToServer();
 
         }
     }

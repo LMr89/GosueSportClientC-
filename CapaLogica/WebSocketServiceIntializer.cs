@@ -77,6 +77,24 @@ namespace CapaLogica
 
         }
 
+         string ConvertTiemEndObjToString(TimeEndRequest req)
+        {
+            return JsonConvert.SerializeObject(req);
+        }
+
+        public void SendTimeEndToServer()
+        {
+            SendMessageToServer(
+                ConvertTiemEndObjToString(
+                    new TimeEndRequest() 
+                    {
+                        macAddres = MachineDetails.GetMacAddressMachine(),
+
+                        isTimeEnd = true
+                    }
+                    )
+                );
+        }
        
 
     }
